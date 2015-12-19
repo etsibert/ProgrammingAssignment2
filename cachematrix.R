@@ -34,3 +34,14 @@ cacheSolve <- function(x, ...) {
         im<-solve(data)
         im
 }
+
+#Inverse Example: M x InvOfM = I
+##Test Case:
+myMatrix<-matrix(c(1,2,2,1), nrow=2, ncol=2)
+myMatrix
+makeCacheMatrix(myMatrix)$getInverse()                    #Attempt to access the cache
+InverseOfMyMatrix<-cacheSolve(makeCacheMatrix(myMatrix))  #establish the matrix and solve for its inverse
+InverseOfMyMatrix                                         #Show the inverse matrix
+makeCacheMatrix(myMatrix)$get()                           #Get the original matrix
+makeCacheMatrix(myMatrix)$setInverse(InverseOfMyMatrix)   #Cache the inverse matrix
+cacheSolve(makeCacheMatrix(myMatrix))                     #Attempt to re-solve for the inverse. You should get the inverse from the cache
